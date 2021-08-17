@@ -117,7 +117,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-fugitive' "git指令支持
 "Plug 'tpope/vim-surround'   "surroundings: parentheses, brackets, quotes, XML tags, and more.
-"Plug 'tpope/vim-commentary' "快速添加注释
+Plug 'tpope/vim-commentary' "快速添加注释
 "Plug 'tpope/vim-repeat' "重复更复杂的命令
 "Plug 'tpope/vim-endwise' "This is a simple plugin that helps to end certain structures automatically.
 Plug 'vim-airline/vim-airline'
@@ -142,6 +142,9 @@ Plug 'rakr/vim-one'
 Plug 'KeitaNakamura/neodark.vim'
 Plug 'tomasr/molokai'
 Plug 'voldikss/vim-floaterm'
+Plug 'buoto/gotests-vim' "gotest
+Plug 'SirVer/ultisnips'
+Plug 'JackTJC/vim-snippets'
 call plug#end()
 
 
@@ -327,7 +330,7 @@ let g:godef_split=2
 
 
 " YouCompleteMe 配置
-let g:ycm_server_python_interpreter='python3'
+let g:ycm_server_python_interpreter='python3.9'
 " 寻找全局配置文件
 let g:ycm_global_ycm_extra_conf = "~/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py"
 let g:ycm_language_server =
@@ -349,3 +352,9 @@ set completeopt=longest,menu
 " 浮动终端设置
 nnoremap <silent> fn :FloatermNew --width=130 --height=70 --autoclose=1 --position=right<cr>
 nnoremap <silent> fk :FloatermKill<cr>
+
+" snip
+" Trigger configuration. Do not use <tab> if you use YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<S-t>"
+let g:UltiSnipsJumpForwardTrigger="<S-f>"
+let g:UltiSnipsJumpBackwardTrigger="<S-b>"
