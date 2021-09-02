@@ -68,6 +68,9 @@ set termencoding=utf-8
 set encoding=utf8
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 
+" by jincaitian
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set foldmethod=syntax "设置代码折叠
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gvim/macvim设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -143,8 +146,8 @@ Plug 'KeitaNakamura/neodark.vim'
 Plug 'tomasr/molokai'
 Plug 'voldikss/vim-floaterm'
 Plug 'buoto/gotests-vim' "gotest
-Plug 'SirVer/ultisnips'
-Plug 'JackTJC/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'JackTJC/vim-snippets'
 call plug#end()
 
 
@@ -291,8 +294,6 @@ nnoremap <leader><leader>d :vertical res -10 <cr>
 inoremap jk <esc>
 let g:rehash256 = 1
 
-
-
 " 主题设置
 set termguicolors
 let g:molokai_original = 1
@@ -300,10 +301,6 @@ let g:molokai_original = 1
 colorschem molokai
 "colorscheme one
 set background=dark
-
-
-
-
 
 " vim go相关设置
 let g:go_def_mode = 'gopls'
@@ -326,9 +323,6 @@ let g:go_highlight_methods = 1
 let g:go_highlight_generate_tags = 1
 let g:godef_split=2
 
-
-
-
 " YouCompleteMe 配置
 let g:ycm_server_python_interpreter='python3.9'
 " 寻找全局配置文件
@@ -348,13 +342,6 @@ let g:go_info_mode='~/.vim/plugged/YouCompleteMe/third_party/ycmd/third_party/go
 "let g:ycm_log_level = 'debug'
 set completeopt=longest,menu
 
-
 " 浮动终端设置
 nnoremap <silent> fn :FloatermNew --width=130 --height=70 --autoclose=1 --position=right<cr>
 nnoremap <silent> fk :FloatermKill<cr>
-
-" snip
-" Trigger configuration. Do not use <tab> if you use YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<S-t>"
-let g:UltiSnipsJumpForwardTrigger="<S-f>"
-let g:UltiSnipsJumpBackwardTrigger="<S-b>"
