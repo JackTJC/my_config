@@ -119,10 +119,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-fugitive' "git指令支持
-"Plug 'tpope/vim-surround'   "surroundings: parentheses, brackets, quotes, XML tags, and more.
 Plug 'tpope/vim-commentary' "快速添加注释
-"Plug 'tpope/vim-repeat' "重复更复杂的命令
-"Plug 'tpope/vim-endwise' "This is a simple plugin that helps to end certain structures automatically.
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
@@ -141,17 +138,16 @@ Plug 'rhysd/clever-f.vim'
 Plug 'fatih/vim-go'
 Plug 'solarnz/thrift.vim'
 Plug 'uarun/vim-protobuf'
+Plug 'voldikss/vim-floaterm'
+Plug 'buoto/gotests-vim' "gotest
+"主题
 Plug 'rakr/vim-one'
 Plug 'KeitaNakamura/neodark.vim'
 Plug 'tomasr/molokai'
-Plug 'voldikss/vim-floaterm'
-Plug 'buoto/gotests-vim' "gotest
-" Plug 'SirVer/ultisnips'
-" Plug 'JackTJC/vim-snippets'
+Plug 'morhetz/gruvbox'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'altercation/vim-colors-solarized'
 call plug#end()
-
-
-" 浮动终端设置
 
 " load vim default plugin
 runtime macros/matchit.vim
@@ -174,25 +170,8 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
-
-
 " 打开文件自动定位到最后编辑的位置
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
-
-
-" airline
-let g:airline_theme="onedark"
-"let g:airline_theme="light"
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-
 
 " vim-buffer
 nnoremap <silent> <c-p> :PreviousBuffer<cr>
@@ -288,21 +267,64 @@ nnoremap <leader>g :GV<cr>
 nnoremap <leader>G :GV!<cr>
 nnoremap <leader>gg :GV?<cr>
 
-"   自定义配置信息 by tianjincai
+""""""""""""""""""""""""""""""""""""""""""""键盘映射""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader><leader>i :vertical res +10 <cr>
 nnoremap <leader><leader>d :vertical res -10 <cr>
 inoremap jk <esc>
 let g:rehash256 = 1
 
-" 主题设置
-set termguicolors
-let g:molokai_original = 1
-"colorscheme neodark
-colorschem molokai
-"colorscheme one
-set background=dark
 
-" vim go相关设置
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""主题设置"""""""""""""""""""""""""""""""""""""""""""""""""
+"molokai
+"set termguicolors
+" colorschem molokai
+" let g:molokai_original = 1
+" let g:airline_theme="molokai"
+" set background=dark
+
+" neodark
+" colorscheme neodark
+
+" vim - one
+" colorscheme one
+" let g:airline_theme="onedark"
+" set background=dark
+
+"gruvbox
+" colorscheme gruvbox
+" let g:airline_theme="gruvbox"
+" set background=light
+
+"paper color
+" set t_Co=256   " This is may or may not needed.
+" set background=light
+" colorscheme PaperColor
+" let g:airline_theme="papercolor"
+
+" solarized
+set background=light
+colorscheme solarized
+let g:airline_theme="solarized"
+
+" airline 主题设置
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+
+
+
+
+
+" """""""""""""""""""""""""""""""""""""vim go相关设置"""""""""""""""""""""""""""""""""""""
 let g:go_def_mode = 'gopls'
 nnoremap <F9> :GoDebugBreakpoint<cr>
 nnoremap <F5> :GoDebugContinue<cr>
@@ -323,10 +345,13 @@ let g:go_highlight_methods = 1
 let g:go_highlight_generate_tags = 1
 let g:godef_split=2
 
-" YouCompleteMe 配置
+
+
+
+
+" """"""""""""""""""""""""""""""""""""""""""""YouCompleteMe 配置""""""""""""""""""""""""""""""""""""""""""""
 let g:ycm_server_python_interpreter='python3.9'
-" 寻找全局配置文件
-let g:ycm_global_ycm_extra_conf = "~/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py"
+let g:ycm_global_ycm_extra_conf = "~/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py" " 寻找全局配置文件
 let g:ycm_language_server =
   \ [
   \   {
@@ -338,10 +363,12 @@ let g:ycm_language_server =
   \ ]
 
 let g:go_info_mode='~/.vim/plugged/YouCompleteMe/third_party/ycmd/third_party/go/src/golang.org/x/tools/cmd/gopls/gopls'
-" 开启YouCompleteMe 日志模式
-"let g:ycm_log_level = 'debug'
+"let g:ycm_log_level = 'debug' " 开启YouCompleteMe 日志模式
 set completeopt=longest,menu
 
-" 浮动终端设置
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""" 浮动终端设置"""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> fn :FloatermNew --width=130 --height=70 --autoclose=1 --position=right<cr>
 nnoremap <silent> fk :FloatermKill<cr>
