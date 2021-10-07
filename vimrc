@@ -155,12 +155,6 @@ runtime macros/matchit.vim
 " 编辑vimrc相关配置文件
 nnoremap <leader>e :edit $MYVIMRC<cr>
 
-" 查看vimplus的help文件
-nnoremap <leader>h :view +let\ &l:modifiable=0 ~/.vimplus/help.md<cr>
-
-" 打开当前光标所在单词的vim帮助文档
-nnoremap <leader>H :execute ":help " . expand("<cword>")<cr>
-
 " 重新加载vimrc文件
 nnoremap <leader>s :source $MYVIMRC<cr>
 
@@ -279,11 +273,11 @@ let g:rehash256 = 1
 
 """""""""""""""""""""""""""""""""""""""""""主题设置"""""""""""""""""""""""""""""""""""""""""""""""""
 "molokai
-"set termguicolors
-" colorschem molokai
-" let g:molokai_original = 1
-" let g:airline_theme="molokai"
-" set background=dark
+set termguicolors
+ colorschem molokai
+ let g:molokai_original = 1
+ let g:airline_theme="molokai"
+ set background=dark
 
 " neodark
 " colorscheme neodark
@@ -305,9 +299,10 @@ let g:rehash256 = 1
 " let g:airline_theme="papercolor"
 
 " solarized
-set background=light
-colorscheme solarized
-let g:airline_theme="solarized"
+" set background=light
+" colorscheme solarized
+" let g:airline_theme="solarized"
+" set termguicolors
 
 " airline 主题设置
 let g:airline_powerline_fonts = 1
@@ -350,7 +345,7 @@ let g:godef_split=2
 
 
 " """"""""""""""""""""""""""""""""""""""""""""YouCompleteMe 配置""""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_server_python_interpreter='python3.9'
+let g:ycm_server_python_interpreter='python'
 let g:ycm_global_ycm_extra_conf = "~/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py" " 寻找全局配置文件
 let g:ycm_language_server =
   \ [
