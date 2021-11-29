@@ -136,17 +136,17 @@ Plug 'terryma/vim-smooth-scroll'
 Plug 'rhysd/clever-f.vim'
 " by JincaiTian
 Plug 'fatih/vim-go'
-Plug 'solarnz/thrift.vim'
-Plug 'uarun/vim-protobuf'
+" Plug 'solarnz/thrift.vim'
+" Plug 'uarun/vim-protobuf'
 Plug 'voldikss/vim-floaterm'
 Plug 'buoto/gotests-vim' "gotest
 "主题
-Plug 'rakr/vim-one'
-Plug 'KeitaNakamura/neodark.vim'
 Plug 'tomasr/molokai'
-Plug 'morhetz/gruvbox'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'altercation/vim-colors-solarized'
+" Plug 'rakr/vim-one'
+" Plug 'KeitaNakamura/neodark.vim'
+" Plug 'morhetz/gruvbox'
+" Plug 'NLKNguyen/papercolor-theme'
+" Plug 'altercation/vim-colors-solarized'
 call plug#end()
 
 " load vim default plugin
@@ -279,30 +279,6 @@ set termguicolors
  let g:airline_theme="molokai"
  set background=dark
 
-" neodark
-" colorscheme neodark
-
-" vim - one
-" colorscheme one
-" let g:airline_theme="onedark"
-" set background=dark
-
-"gruvbox
-" colorscheme gruvbox
-" let g:airline_theme="gruvbox"
-" set background=light
-
-"paper color
-" set t_Co=256   " This is may or may not needed.
-" set background=light
-" colorscheme PaperColor
-" let g:airline_theme="papercolor"
-
-" solarized
-" set background=light
-" colorscheme solarized
-" let g:airline_theme="solarized"
-" set termguicolors
 
 " airline 主题设置
 let g:airline_powerline_fonts = 1
@@ -314,9 +290,6 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-
-
-
 
 
 " """""""""""""""""""""""""""""""""""""vim go相关设置"""""""""""""""""""""""""""""""""""""
@@ -341,11 +314,8 @@ let g:go_highlight_generate_tags = 1
 let g:godef_split=2
 
 
-
-
-
 " """"""""""""""""""""""""""""""""""""""""""""YouCompleteMe 配置""""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_server_python_interpreter='python'
+let g:ycm_server_python_interpreter='python3.9'
 let g:ycm_global_ycm_extra_conf = "~/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py" " 寻找全局配置文件
 let g:ycm_language_server =
   \ [
@@ -360,8 +330,6 @@ let g:ycm_language_server =
 let g:go_info_mode='~/.vim/plugged/YouCompleteMe/third_party/ycmd/third_party/go/src/golang.org/x/tools/cmd/gopls/gopls'
 "let g:ycm_log_level = 'debug' " 开启YouCompleteMe 日志模式
 set completeopt=longest,menu
-
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""" 浮动终端设置"""""""""""""""""""""""""""""""""""""""""""""""""""
