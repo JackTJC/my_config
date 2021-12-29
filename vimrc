@@ -104,8 +104,7 @@ command! -nargs=1 -bar UnPlug call s:deregister(<args>)
 " 插件列表
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
-"Plug 'chxuan/vim-edit'
-Plug 'chxuan/vim-buffer' "缓存
+" Plug 'chxuan/vim-buffer' "缓存
 Plug 'chxuan/vimplus-startify' "开始页面
 Plug 'preservim/tagbar'
 Plug 'ycm-core/YouCompleteMe' "自动补全
@@ -136,17 +135,11 @@ Plug 'terryma/vim-smooth-scroll'
 Plug 'rhysd/clever-f.vim'
 " by JincaiTian
 Plug 'fatih/vim-go'
-" Plug 'solarnz/thrift.vim'
-" Plug 'uarun/vim-protobuf'
+Plug 'solarnz/thrift.vim'
+Plug 'uarun/vim-protobuf'
 Plug 'voldikss/vim-floaterm'
-Plug 'buoto/gotests-vim' "gotest
 "主题
 Plug 'tomasr/molokai'
-" Plug 'rakr/vim-one'
-" Plug 'KeitaNakamura/neodark.vim'
-" Plug 'morhetz/gruvbox'
-" Plug 'NLKNguyen/papercolor-theme'
-" Plug 'altercation/vim-colors-solarized'
 call plug#end()
 
 " load vim default plugin
@@ -154,7 +147,6 @@ runtime macros/matchit.vim
 
 " 编辑vimrc相关配置文件
 nnoremap <leader>e :edit $MYVIMRC<cr>
-
 " 重新加载vimrc文件
 nnoremap <leader>s :source $MYVIMRC<cr>
 
@@ -166,12 +158,6 @@ nnoremap <c-l> <c-w>l
 
 " 打开文件自动定位到最后编辑的位置
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
-
-" vim-buffer
-nnoremap <silent> <c-p> :PreviousBuffer<cr>
-nnoremap <silent> <c-n> :NextBuffer<cr>
-nnoremap <silent> <leader>d :CloseBuffer<cr>
-nnoremap <silent> <leader>D :BufOnly<cr>
 
 
 " nerdtree
@@ -206,7 +192,6 @@ let g:ycm_semantic_triggers =  {
             \   'lua' : ['.', ':'],
             \   'erlang' : [':'],
             \ }
-nmap <F12> :YcmDiags<cr>
 
 " tagbar
 let g:tagbar_width = 30
@@ -262,18 +247,12 @@ nnoremap <leader>G :GV!<cr>
 nnoremap <leader>gg :GV?<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""键盘映射""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader><leader>i :vertical res +10 <cr>
-nnoremap <leader><leader>d :vertical res -10 <cr>
 inoremap jk <esc>
 let g:rehash256 = 1
 
-
-
-
-
 """""""""""""""""""""""""""""""""""""""""""主题设置"""""""""""""""""""""""""""""""""""""""""""""""""
 "molokai
-set termguicolors
+ set termguicolors
  colorschem molokai
  let g:molokai_original = 1
  let g:airline_theme="molokai"
@@ -292,13 +271,8 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 
 
-" """""""""""""""""""""""""""""""""""""vim go相关设置"""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""vim go相关设置"""""""""""""""""""""""""""""""""""""
 let g:go_def_mode = 'gopls'
-nnoremap <F9> :GoDebugBreakpoint<cr>
-nnoremap <F5> :GoDebugContinue<cr>
-nnoremap <F10> :GoDebugNext<cr>
-nnoremap <F6> :GoDebugPrint
-nnoremap <F11> :GoDebugStep<cr>
 let g:go_fmt_command = "goimports" " 格式化将默认的 gofmt 替换
 let g:go_autodetect_gopath = 1
 let g:go_list_type = "quickfix"
@@ -315,19 +289,19 @@ let g:godef_split=2
 
 
 " """"""""""""""""""""""""""""""""""""""""""""YouCompleteMe 配置""""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_server_python_interpreter='python3.9'
-let g:ycm_global_ycm_extra_conf = "~/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py" " 寻找全局配置文件
+let g:ycm_server_python_interpreter='python3'
+" let g:ycm_global_ycm_extra_conf = "~/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py" " 寻找全局配置文件
 let g:ycm_language_server =
   \ [
   \   {
   \     'name': 'gopls',
-  \     'cmdline': [ '~/.vim/plugged/YouCompleteMe/third_party/ycmd/third_party/go/src/golang.org/x/tools/cmd/gopls/gopls' , "-rpc.trace" ],
+  \     'cmdline': [ '~/go/bin/gopls' , "-rpc.trace" ],
   \     'filetypes': [ 'go' ],
   \     "project_root_files": [ "go.mod" ]
   \   }
   \ ]
 
-let g:go_info_mode='~/.vim/plugged/YouCompleteMe/third_party/ycmd/third_party/go/src/golang.org/x/tools/cmd/gopls/gopls'
+let g:go_info_mode='gopls'
 "let g:ycm_log_level = 'debug' " 开启YouCompleteMe 日志模式
 set completeopt=longest,menu
 
@@ -335,3 +309,10 @@ set completeopt=longest,menu
 """"""""""""""""""""""""""""""""""""""""""""""""""" 浮动终端设置"""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> fn :FloatermNew --width=130 --height=70 --autoclose=1 --position=right<cr>
 nnoremap <silent> fk :FloatermKill<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""" golang快捷键"""""""""""""""""""""""""""""""""""""""""""""""""""
+au FileType go nmap <leader>c <Plug>(go-callers)
+au FileType go nmap <leader>r <Plug>(go-referrers)
+au FileType go nmap <leader>i <Plug>(go-implements)
+au FileType go nmap <leader>n <Plug>(go-rename)
+au FileType go nmap <leader>p <Plug>(go-channelpeers)
