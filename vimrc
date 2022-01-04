@@ -105,7 +105,6 @@ command! -nargs=1 -bar UnPlug call s:deregister(<args>)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 " Plug 'chxuan/vim-buffer' "缓存
-Plug 'chxuan/vimplus-startify' "开始页面
 Plug 'preservim/tagbar'
 Plug 'ycm-core/YouCompleteMe' "自动补全
 Plug 'Yggdroot/LeaderF'
@@ -138,8 +137,10 @@ Plug 'fatih/vim-go'
 Plug 'solarnz/thrift.vim'
 Plug 'uarun/vim-protobuf'
 Plug 'voldikss/vim-floaterm'
+Plug 'mhinz/vim-startify'
 "主题
 Plug 'tomasr/molokai'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 " load vim default plugin
@@ -252,11 +253,19 @@ let g:rehash256 = 1
 
 """""""""""""""""""""""""""""""""""""""""""主题设置"""""""""""""""""""""""""""""""""""""""""""""""""
 "molokai
- set termguicolors
- colorschem molokai
- let g:molokai_original = 1
- let g:airline_theme="molokai"
- set background=dark
+set termguicolors
+colorschem molokai
+let g:molokai_original = 1
+let g:airline_theme="molokai"
+set background=dark
+
+set termguicolors
+colorschem gruvbox
+let g:molokai_original = 1
+let g:airline_theme="gruvbox"
+set background=dark
+
+
 
 
 " airline 主题设置
@@ -272,6 +281,11 @@ let g:airline_right_alt_sep = ''
 
 
 """"""""""""""""""""""""""""""""""""""vim go相关设置"""""""""""""""""""""""""""""""""""""
+
+let g:go_gopls_enabled=1
+let g:go_gopls_options=['-remote=auto']
+let g:go_referrers_mode='gopls'
+let g:go_info_mode='gopls'
 let g:go_def_mode = 'gopls'
 let g:go_fmt_command = "goimports" " 格式化将默认的 gofmt 替换
 let g:go_autodetect_gopath = 1
@@ -290,20 +304,21 @@ let g:godef_split=2
 
 " """"""""""""""""""""""""""""""""""""""""""""YouCompleteMe 配置""""""""""""""""""""""""""""""""""""""""""""
 let g:ycm_server_python_interpreter='python3'
-" let g:ycm_global_ycm_extra_conf = "~/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py" " 寻找全局配置文件
 let g:ycm_language_server =
   \ [
   \   {
   \     'name': 'gopls',
-  \     'cmdline': [ '~/go/bin/gopls' , "-rpc.trace" ],
+  \     'cmdline': [ '~/go/bin/gopls' , "-rpc.trace" ,"-remote=auto","-logfile","/tmp/gopls_stderr.log"],
   \     'filetypes': [ 'go' ],
   \     "project_root_files": [ "go.mod" ]
   \   }
   \ ]
 
-let g:go_info_mode='gopls'
+
 "let g:ycm_log_level = 'debug' " 开启YouCompleteMe 日志模式
 set completeopt=longest,menu
+let g:ycm_gopls_args = ['-remote=auto']
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""" 浮动终端设置"""""""""""""""""""""""""""""""""""""""""""""""""""
