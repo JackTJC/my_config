@@ -141,6 +141,7 @@ Plug 'mhinz/vim-startify'
 "主题
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
+Plug 'altercation/vim-colors-solarized'
 call plug#end()
 
 " load vim default plugin
@@ -171,32 +172,37 @@ let g:NERDTreeHighlightFoldersFullName = 1
 let g:NERDTreeDirArrowExpandable='▷'
 let g:NERDTreeDirArrowCollapsible='▼'
 
-" YCM
-" 如果不指定python解释器路径，ycm会自己搜索一个合适的(与编译ycm时使用的python版本匹配)
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_error_symbol = '✗'
-let g:ycm_warning_symbol = '✹'
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_complete_in_comments = 1
-let g:ycm_complete_in_strings = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_semantic_triggers =  {
-            \   'c' : ['->', '.','re![_a-zA-z0-9]'],
-            \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
-            \             're!\[.*\]\s'],
-            \   'ocaml' : ['.', '#'],
-            \   'cpp,objcpp' : ['->', '.', '::','re![_a-zA-Z0-9]'],
-            \   'perl' : ['->'],
-            \   'php' : ['->', '::'],
-            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-            \   'ruby' : ['.', '::'],
-            \   'lua' : ['.', ':'],
-            \   'erlang' : [':'],
-            \ }
 
 " tagbar
 let g:tagbar_width = 30
 nnoremap <silent> <leader>t :TagbarToggle<cr>
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
 " incsearch.vim
 map /  <Plug>(incsearch-forward)
@@ -249,21 +255,19 @@ nnoremap <leader>gg :GV?<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""键盘映射""""""""""""""""""""""""""""""""""""""""""""
 inoremap jk <esc>
-let g:rehash256 = 1
-
 """""""""""""""""""""""""""""""""""""""""""主题设置"""""""""""""""""""""""""""""""""""""""""""""""""
-"molokai
+
+"let g:rehash256 = 1
 set termguicolors
-colorschem molokai
-let g:molokai_original = 1
-let g:airline_theme="molokai"
 set background=dark
 
-set termguicolors
+"molokai
+"colorschem molokai
+"let g:molokai_original = 1
+"let g:airline_theme="molokai"
+
 colorschem gruvbox
-let g:molokai_original = 1
 let g:airline_theme="gruvbox"
-set background=dark
 
 
 
@@ -281,7 +285,6 @@ let g:airline_right_alt_sep = ''
 
 
 """"""""""""""""""""""""""""""""""""""vim go相关设置"""""""""""""""""""""""""""""""""""""
-
 let g:go_gopls_enabled=1
 let g:go_gopls_options=['-remote=auto']
 let g:go_referrers_mode='gopls'
@@ -301,33 +304,43 @@ let g:go_highlight_methods = 1
 let g:go_highlight_generate_tags = 1
 let g:godef_split=2
 
-
-" """"""""""""""""""""""""""""""""""""""""""""YouCompleteMe 配置""""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_server_python_interpreter='python3'
-let g:ycm_language_server =
-  \ [
-  \   {
-  \     'name': 'gopls',
-  \     'cmdline': [ '~/go/bin/gopls' , "-rpc.trace" ,"-remote=auto","-logfile","/tmp/gopls_stderr.log"],
-  \     'filetypes': [ 'go' ],
-  \     "project_root_files": [ "go.mod" ]
-  \   }
-  \ ]
-
-
-"let g:ycm_log_level = 'debug' " 开启YouCompleteMe 日志模式
-set completeopt=longest,menu
-let g:ycm_gopls_args = ['-remote=auto']
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""" 浮动终端设置"""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> fn :FloatermNew --width=130 --height=70 --autoclose=1 --position=right<cr>
-nnoremap <silent> fk :FloatermKill<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""" golang快捷键"""""""""""""""""""""""""""""""""""""""""""""""""""
 au FileType go nmap <leader>c <Plug>(go-callers)
 au FileType go nmap <leader>r <Plug>(go-referrers)
 au FileType go nmap <leader>i <Plug>(go-implements)
 au FileType go nmap <leader>n <Plug>(go-rename)
 au FileType go nmap <leader>p <Plug>(go-channelpeers)
+
+
+"""""""""""""""""""""""""""""""""""""""""""""YouCompleteMe 配置""""""""""""""""""""""""""""""""""""""""""""
+" 如果不指定python解释器路径，ycm会自己搜索一个合适的(与编译ycm时使用的python版本匹配)
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_error_symbol = '❌'
+let g:ycm_warning_symbol = '❗️'
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_strings = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_semantic_triggers =  {
+            \   'c' : ['->', '.','re![_a-zA-z0-9]'],
+            \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+            \             're!\[.*\]\s'],
+            \   'ocaml' : ['.', '#'],
+            \   'cpp,objcpp' : ['->', '.', '::','re![_a-zA-Z0-9]'],
+            \   'perl' : ['->'],
+            \   'php' : ['->', '::'],
+            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+            \   'ruby' : ['.', '::'],
+            \   'lua' : ['.', ':'],
+            \   'erlang' : [':'],
+            \ }
+
+"let g:ycm_log_level = 'debug' " 开启YouCompleteMe 日志模式
+let g:ycm_server_python_interpreter='python3'
+set completeopt=longest,menu
+let g:ycm_gopls_args = ['-remote=auto']
+let g:ycm_gopls_binary_path = '~/go/bin/gopls'
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""" 浮动终端设置"""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> fn :FloatermNew --width=130 --height=70 --autoclose=1 --position=right<cr>
+nnoremap <silent> fk :FloatermKill<cr>
