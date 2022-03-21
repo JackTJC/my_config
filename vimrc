@@ -141,7 +141,9 @@ Plug 'mhinz/vim-startify'
 "主题
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
-Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
+Plug 'dracula/vim'
+Plug 'flazz/vim-colorschemes'
 call plug#end()
 
 " load vim default plugin
@@ -257,20 +259,21 @@ nnoremap <leader>gg :GV?<cr>
 inoremap jk <esc>
 """""""""""""""""""""""""""""""""""""""""""主题设置"""""""""""""""""""""""""""""""""""""""""""""""""
 
-"let g:rehash256 = 1
+let g:rehash256 = 1
 set termguicolors
 set background=dark
 
 "molokai
-"colorschem molokai
-"let g:molokai_original = 1
-"let g:airline_theme="molokai"
+" colorschem molokai
+" let g:molokai_original = 1
+" let g:airline_theme="molokai"
 
-colorschem gruvbox
-let g:airline_theme="gruvbox"
+" dracula
+colorscheme dracula
+let g:airline_theme="dracula"
 
-
-
+" colorschem gruvbox
+" let g:airline_theme="gruvbox"
 
 " airline 主题设置
 let g:airline_powerline_fonts = 1
